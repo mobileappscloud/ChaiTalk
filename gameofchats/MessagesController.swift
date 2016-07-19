@@ -16,6 +16,16 @@ class MessagesController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        do
+        {
+            try FIRAuth.auth()?.signOut()
+        }
+        
+        catch
+        {
+            
+        }
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .Plain, target: self, action: #selector(handleLogout))
         
         let image = UIImage(named: "new_message_icon")
