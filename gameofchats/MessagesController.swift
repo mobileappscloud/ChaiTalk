@@ -51,7 +51,20 @@ class MessagesController: UITableViewController {
         let ref = FIRDatabase.database().reference().child("user-messages").child(uid)
         ref.observeEventType(.ChildAdded, withBlock: { (snapshot) in
             
-        let messageId = snapshot.key
+        let userId = snapshot.key
+        FIRDatabase.database().reference().child("user-messages").child(uid).child(userId).observeEventType(.ChildAdded, withBlock: { (snapshot) in
+            
+            let messageId = snapshot.key
+            self.fetchMessageWithMessageId(messageId)
+            
+            }, withCancelBlock: nil)
+            
+        }, withCancelBlock: nil)
+ 
+    }
+    
+    private func fetchMessageWithMessageId(messageId:String)
+    {
         let messagesReference = FIRDatabase.database().reference().child("messages").child(messageId)
         
         messagesReference.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
@@ -63,27 +76,31 @@ class MessagesController: UITableViewController {
                 if let chatPartnerId = message.chatPartnerId() {
                     self.messagesDictionary[chatPartnerId] = message
                     
-                    self.messages = Array(self.messagesDictionary.values)
-                    self.messages.sortInPlace({ (message1, message2) -> Bool in
-                        
-                        return message1.timestamp?.intValue > message2.timestamp?.intValue
-                    })
+                    
                 }
                 
-                self.timer?.invalidate()
-                self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(self.handleReloadTable), userInfo: nil, repeats: false)
-             
+                self.attemptReloadOfTable()
             }
             
             }, withCancelBlock: nil)
-        
-        }, withCancelBlock: nil)
+    }
+    
+    private func attemptReloadOfTable()
+    {
+        self.timer?.invalidate()
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(self.handleReloadTable), userInfo: nil, repeats: false)
     }
     
     var timer: NSTimer?
     
     func handleReloadTable()
     {
+        self.messages = Array(self.messagesDictionary.values)
+        self.messages.sortInPlace({ (message1, message2) -> Bool in
+            
+            return message1.timestamp?.intValue > message2.timestamp?.intValue
+        })
+        
         //this will crash because of background thread, so lets call this on dispatch_async main thread
         dispatch_async(dispatch_get_main_queue(), {
             self.tableView.reloadData()
