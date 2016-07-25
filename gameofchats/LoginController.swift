@@ -104,10 +104,10 @@ class LoginController: UIViewController {
     
     lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "gameofthrones_splash")
+       // imageView.image = UIImage(named: "gameofthrones_splash")
+        imageView.image = UIImage(named: "ChaiTalkPic")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .ScaleAspectFill
-        
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
         imageView.userInteractionEnabled = true
         
