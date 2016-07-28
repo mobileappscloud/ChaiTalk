@@ -10,6 +10,7 @@
 		B3189ED81D456D6C000FB09A /* chaiTalkLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = B3189ED71D456D6C000FB09A /* chaiTalkLogo.png */; };
 		B3189EDA1D456E77000FB09A /* RealChaiTalkLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = B3189ED91D456E77000FB09A /* RealChaiTalkLogo.png */; };
 		B3189EDC1D456EEF000FB09A /* ChaiTalkPic.png in Resources */ = {isa = PBXBuildFile; fileRef = B3189EDB1D456EEF000FB09A /* ChaiTalkPic.png */; };
+		B31E056F1D49A69600FA84AA /* eulaAgreement.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B31E056E1D49A69600FA84AA /* eulaAgreement.rtf */; };
 		B31F51861D42D40F00CE9EFC /* upload_image_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B31F51851D42D40F00CE9EFC /* upload_image_icon@2x.png */; };
 		B3E83D671D41C73800486FB5 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E83D661D41C73800486FB5 /* ChatMessageCell.swift */; };
 		B3F064151D3EE99300B493FC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B3F064141D3EE99300B493FC /* GoogleService-Info.plist */; };
@@ -36,6 +37,7 @@
 		B3189ED71D456D6C000FB09A /* chaiTalkLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chaiTalkLogo.png; sourceTree = "<group>"; };
 		B3189ED91D456E77000FB09A /* RealChaiTalkLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RealChaiTalkLogo.png; sourceTree = "<group>"; };
 		B3189EDB1D456EEF000FB09A /* ChaiTalkPic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChaiTalkPic.png; sourceTree = "<group>"; };
+		B31E056E1D49A69600FA84AA /* eulaAgreement.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = eulaAgreement.rtf; sourceTree = "<group>"; };
 		B31F51851D42D40F00CE9EFC /* upload_image_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upload_image_icon@2x.png"; sourceTree = "<group>"; };
 		B3E83D661D41C73800486FB5 /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		B3F064141D3EE99300B493FC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				C7027A741D2C1924007AA9BF /* Extensions.swift */,
+				B31E056E1D49A69600FA84AA /* eulaAgreement.rtf */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				TargetAttributes = {
 					C7A24D7C1D1E45DF00011542 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 7K2U3828M5;
 					};
 				};
 			};
@@ -223,6 +227,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B31E056F1D49A69600FA84AA /* eulaAgreement.rtf in Resources */,
 				C7A24D8B1D1E45DF00011542 /* LaunchScreen.storyboard in Resources */,
 				B3189ED81D456D6C000FB09A /* chaiTalkLogo.png in Resources */,
 				B3F064151D3EE99300B493FC /* GoogleService-Info.plist in Resources */,
@@ -415,11 +420,13 @@
 			baseConfigurationReference = 911BE54CDD9D6776F3F65582 /* Pods-gameofchats.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: ZULFIQAR SYED (7K2U3828M5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = gameofchats/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.CongenialApps.ChaiTalk;
 				PRODUCT_NAME = ChaiTalk;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -428,11 +435,13 @@
 			baseConfigurationReference = 2BF7E19844AE7BCEB8C72F3D /* Pods-gameofchats.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: ZULFIQAR SYED (7K2U3828M5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = gameofchats/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.CongenialApps.ChaiTalk;
 				PRODUCT_NAME = ChaiTalk;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

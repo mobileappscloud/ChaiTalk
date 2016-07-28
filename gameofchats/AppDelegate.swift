@@ -9,11 +9,38 @@
 import UIKit
 import Firebase
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    func presentTextViewWithText(text:String)
+    {
+        let alertController = UIAlertController(title: "End User Licensing Agreement", message: text, preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action) in
+            
+            UIApplication.sharedApplication().keyWindow?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        
+        UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func readFromDocument()
+    {
+        let bundle = NSBundle.mainBundle()
+        let path = bundle.pathForResource("eulaAgreement", ofType: "rtf")
+        do
+        {
+            let content = try String(contentsOfFile: path!, encoding: NSUTF8StringEncoding) as String
+            presentTextViewWithText(content)
+        }
+        
+        catch
+        {
+            print("Could not read file")
+        }
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -23,6 +50,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         window?.rootViewController = UINavigationController(rootViewController: MessagesController())
+        
+        
+        //Bring up agreement
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if (!defaults.boolForKey("notFirstRun"))
+        {
+            //bring up textView
+            readFromDocument()
+            defaults.setBool(true, forKey: "notFirstRun")
+        }
         
         return true
     }
